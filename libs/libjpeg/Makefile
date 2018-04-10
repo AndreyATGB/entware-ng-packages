@@ -76,9 +76,18 @@ define Build/InstallDev
 	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libjpeg.{a,so*} $(1)/opt/lib/
 endef
 
+# define Package/libjpeg/install
+#	$(INSTALL_DIR) $(1)/opt/lib
+#	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libjpeg.so.* $(1)/opt/lib/
+#endef
+
 define Package/libjpeg/install
+	$(INSTALL_DIR) $(1)/opt/include
+	$(CP) $(PKG_INSTALL_DIR)/opt/include/jpeglib.h $(1)/opt/include/
+	$(CP) $(PKG_BUILD_DIR)/jpegint.h $(1)/opt/include/
+	$(CP) $(PKG_INSTALL_DIR)/opt/include/j{config,error,morecfg}.h $(1)/opt/include/
 	$(INSTALL_DIR) $(1)/opt/lib
-	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libjpeg.so.* $(1)/opt/lib/
+	$(CP) $(PKG_INSTALL_DIR)/opt/lib/libjpeg.{a,so*} $(1)/opt/lib/
 endef
 
 define Package/jpeg-tools/install
